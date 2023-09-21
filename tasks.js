@@ -44,6 +44,8 @@ function onDataReceived(text) {
     add(text.substring(4).trim());
   } else if (textParts[0] === "remove") {
     remove();
+  } else if (textParts[0] === "edit") {
+    edit(text);
   } else if (textParts[0] === "help") {
     help();
   } else {
@@ -77,6 +79,7 @@ function unknownCommand(c) {
   console.log('unknown command: "' + c.trim() + '"');
 }
 
+// add function
 function add(task) {
   if (task.trim() !== "") {
     tasks.push(task);
@@ -84,10 +87,40 @@ function add(task) {
   }
 }
 
+// remove function
 function remove(index) {
   if (index >= 1 && index <= tasks.length) {
     const removedTask = tasks.splice(index - 1, 1);
     console.log(`Removed task: "${removedTask[0]}".`);
+  } else {
+    console.log("Invalid task index. Task does not exist.");
+  }
+}
+
+/// edit function
+function edit(text) {
+  const textParts = text.trim().split(" ");
+  let taskIndex, newText;
+
+  if (textParts.length < 2) {
+    console.log("Invalid format. Use 'edit index new text'.");
+    return;
+  }
+
+  taskIndex = parseInt(textParts[1]);
+  if (isNaN(taskIndex)) {
+    newText = text.substring(textParts[0].length).trim();
+    taskIndex = tasks.length - 1;
+  } else {
+    newText = text
+      .substring(textParts[0].length + textParts[1].length + 2)
+      .trim();
+    taskIndex--;
+  }
+
+  if (taskIndex >= 0 && taskIndex < tasks.length) {
+    tasks[taskIndex] = newText;
+    console.log(`Task ${taskIndex + 1} updated to: "${newText}".`);
   } else {
     console.log("Invalid task index. Task does not exist.");
   }
