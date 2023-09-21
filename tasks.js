@@ -23,7 +23,7 @@ const tasks = loadTasks(); // Load tasks from the default or specified file
 
 // Load tasks from the default or specified file
 function loadTasks() {
-  const saveFileName = "database.json";
+  const saveFileName = process.argv[2] || "database.json";
 
   try {
     const data = fs.readFileSync(saveFileName, "utf8");
@@ -36,7 +36,7 @@ function loadTasks() {
 
 // Save tasks to the specified file
 function saveTasks() {
-  const saveFileName = "database.json";
+  const saveFileName = process.argv[2] || "database.json";
 
   try {
     fs.writeFileSync(saveFileName, JSON.stringify(tasks), "utf8");
