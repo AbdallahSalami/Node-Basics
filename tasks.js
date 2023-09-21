@@ -173,6 +173,8 @@ function help() {
       "- 'list': List all tasks.\n" +
       "- 'add x': Add a task 'x'.\n" +
       "- 'remove [index]': Remove a task at the specified index.\n" +
+      "- 'check [index]': mark a task as done at the specified index.\n" +
+      "- 'uncheck [index]': mark a task as undone at the specified index.\n" +
       "- 'quit' or 'exit': Quit the application."
   );
 }
