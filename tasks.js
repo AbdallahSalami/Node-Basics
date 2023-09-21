@@ -15,10 +15,36 @@ function startApp(name) {
   console.log(`Welcome to ${name}'s application!`);
   console.log("--------------------");
 }
-const tasks = [
-  { title: "do homework", done: false },
-  { title: "take a medicine", done: true },
-];
+const fs = require("fs");
+
+const tasks = loadTasks(); // Load tasks from the default or specified file
+
+// ... rest of the code ...
+
+// Load tasks from the default or specified file
+function loadTasks() {
+  const saveFileName = "database.json";
+
+  try {
+    const data = fs.readFileSync(saveFileName, "utf8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.log("Error loading tasks. Starting with an empty task list.");
+    return [];
+  }
+}
+
+// Save tasks to the specified file
+function saveTasks() {
+  const saveFileName = "database.json";
+
+  try {
+    fs.writeFileSync(saveFileName, JSON.stringify(tasks), "utf8");
+    console.log("Tasks saved successfully.");
+  } catch (error) {
+    console.log("Error saving tasks.");
+  }
+}
 
 /**
  * Decides what to do depending on the data that was received
@@ -186,6 +212,7 @@ function help() {
  */
 function quit() {
   console.log("Quitting now, goodbye!");
+  saveTasks();
   process.exit();
 }
 
