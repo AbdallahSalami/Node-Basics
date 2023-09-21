@@ -89,7 +89,7 @@ function remove(index) {
     const removedTask = tasks.splice(index - 1, 1);
     console.log(`Removed task: "${removedTask[0]}".`);
   } else {
-    console.log("Invalid task index.");
+    console.log("Invalid task index. Task does not exist.");
   }
 }
 
