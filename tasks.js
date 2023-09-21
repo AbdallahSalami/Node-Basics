@@ -39,8 +39,9 @@ function onDataReceived(text) {
   } else if (textParts[0] === "hello") {
     hello(text);
   } else if (textParts[0] === "list") {
-    listTasks();
-  } else if (text) {
+    list();
+  } else if (textParts[0] === "add") {
+    add(text.substring(4).trim());
   } else if (text) {
   } else if (textParts[0] === "help") {
     help();
@@ -49,7 +50,7 @@ function onDataReceived(text) {
   }
 }
 
-function listTasks() {
+function list() {
   tasks.forEach((task, index) => {
     console.log(`${index + 1}. ${task}`);
   });
@@ -64,6 +65,13 @@ function listTasks() {
  */
 function unknownCommand(c) {
   console.log('unknown command: "' + c.trim() + '"');
+}
+
+function add(task) {
+  if (task.trim() !== "") {
+    tasks.push(task);
+    console.log(`Task "${task}" added.`);
+  }
 }
 
 /**
