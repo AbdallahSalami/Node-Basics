@@ -100,6 +100,7 @@ function remove(index) {
  */
 
 // welcome function to type "hello X!"  X can anything
+
 function hello(name) {
   var name1 = name.trim();
 
