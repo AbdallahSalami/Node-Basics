@@ -15,7 +15,10 @@ function startApp(name) {
   console.log(`Welcome to ${name}'s application!`);
   console.log("--------------------");
 }
-const tasks = ["do homework", "take a medicine"];
+const tasks = [
+  { title: "do homework", done: false },
+  { title: "take a medicine", done: true },
+];
 
 /**
  * Decides what to do depending on the data that was received
@@ -43,7 +46,7 @@ function onDataReceived(text) {
   } else if (textParts[0] === "add") {
     add(text.substring(4).trim());
   } else if (textParts[0] === "remove") {
-    remove();
+    remove(textParts[1]);
   } else if (textParts[0] === "edit") {
     edit(text);
   } else if (textParts[0] === "help") {
@@ -55,7 +58,7 @@ function onDataReceived(text) {
 
 function list() {
   tasks.forEach((task, index) => {
-    console.log(`${index + 1}. ${task}`);
+    console.log(`${index + 1}. ${task.title} [${task.done ? "✓" : " "}]`);
   });
 }
 
@@ -73,7 +76,7 @@ function unknownCommand(c) {
 // add function
 function add(task) {
   if (task.trim() !== "") {
-    tasks.push(task);
+    tasks.push({ title: task, done: false });
     console.log(`Task "${task}" added.`);
   }
 }
@@ -87,7 +90,7 @@ function remove(index) {
 
   if (isFinite(taskIndex) && taskIndex >= -1 && taskIndex <= tasks.length) {
     const removedTask = tasks.splice(taskIndex, 1);
-    console.log(`Removed task: "${removedTask[0]}".`);
+    console.log(`Removed task: "${removedTask[0].title}".`);
   } else {
     console.log("Invalid task index. Task does not exist.");
   }
@@ -115,7 +118,7 @@ function edit(text) {
   }
 
   if (taskIndex >= 0 && taskIndex < tasks.length) {
-    tasks[taskIndex] = newText;
+    tasks[taskIndex].title = newText;
     console.log(`Task ${taskIndex + 1} updated to: "${newText}".`);
   } else {
     console.log("Invalid task index. Task does not exist.");
