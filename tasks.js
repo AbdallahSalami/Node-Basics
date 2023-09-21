@@ -32,10 +32,11 @@ function startApp(name) {
  * @returns {void}
  */
 function onDataReceived(text) {
+  var textParts = text.split(" ");
   if (text === "quit\n" || text === "exit\n") {
     quit();
-  } else if (text === "hello\n") {
-    hello();
+  } else if (text.slice(0, 5) === "hello") {
+    hello(text);
   } else if (text === "help\n") {
     help();
   } else {
@@ -61,13 +62,15 @@ function unknownCommand(c) {
  */
 
 // welcome function
-function hello() {
-  console.log("hello!");
+function hello(name) {
+  var name1 = name.trim();
+
+  console.log(name1 + "!");
 }
 
 // help funiction to know how  you can use this app
 function help() {
-  console.log("type: 'hello' to get hello \n 'quit'  or  'exit' to Quting");
+  console.log("type:'hello' to get hello \n---- 'quit'  or  'exit' to Qutting");
 }
 
 /**
