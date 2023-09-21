@@ -49,6 +49,10 @@ function onDataReceived(text) {
     remove(textParts[1]);
   } else if (textParts[0] === "edit") {
     edit(text);
+  } else if (textParts[0] === "check") {
+    checkTask(textParts[1]);
+  } else if (textParts[0] === "uncheck") {
+    uncheckTask(textParts[1]);
   } else if (textParts[0] === "help") {
     help();
   } else {
@@ -120,6 +124,28 @@ function edit(text) {
   if (taskIndex >= 0 && taskIndex < tasks.length) {
     tasks[taskIndex].title = newText;
     console.log(`Task ${taskIndex + 1} updated to: "${newText}".`);
+  } else {
+    console.log("Invalid task index. Task does not exist.");
+  }
+}
+
+// check task
+function checkTask(index) {
+  const taskIndex = parseInt(index);
+  if (isFinite(taskIndex) && taskIndex >= 1 && taskIndex <= tasks.length) {
+    tasks[taskIndex - 1].done = true;
+    console.log(`Task ${taskIndex} marked as done.`);
+  } else {
+    console.log("Invalid task index. Task does not exist.");
+  }
+}
+
+// uncheck task
+function uncheckTask(index) {
+  const taskIndex = parseInt(index);
+  if (isFinite(taskIndex) && taskIndex >= 1 && taskIndex <= tasks.length) {
+    tasks[taskIndex - 1].done = false;
+    console.log(`Task ${taskIndex} marked as not done.`);
   } else {
     console.log("Invalid task index. Task does not exist.");
   }
