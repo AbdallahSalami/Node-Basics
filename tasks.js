@@ -36,6 +36,8 @@ function onDataReceived(text) {
     quit();
   } else if (text === "hello\n") {
     hello();
+  } else if (text === "help\n") {
+    help();
   } else {
     unknownCommand(text);
   }
@@ -60,9 +62,12 @@ function unknownCommand(c) {
 function hello() {
   console.log("hello!");
 }
+function help() {
+  console.log("type: 'hello' to get hello \n 'quit'  or  'exit' to Quting");
+}
 
 /**
- * Exits the application
+ * Exits the applicationc
  *
  * @returns {void}
  */
