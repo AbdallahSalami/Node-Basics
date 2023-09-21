@@ -42,7 +42,8 @@ function onDataReceived(text) {
     list();
   } else if (textParts[0] === "add") {
     add(text.substring(4).trim());
-  } else if (text) {
+  } else if (textParts[0] === "remove") {
+    remove();
   } else if (textParts[0] === "help") {
     help();
   } else {
@@ -54,6 +55,15 @@ function list() {
   tasks.forEach((task, index) => {
     console.log(`${index + 1}. ${task}`);
   });
+}
+
+function remove(index) {
+  if (index >= 1 && index <= tasks.length) {
+    const removedTask = tasks.splice(index - 1, 1);
+    console.log(`Removed task: "${removedTask[0]}".`);
+  } else {
+    console.log("Invalid task index.");
+  }
 }
 
 /**
@@ -71,6 +81,15 @@ function add(task) {
   if (task.trim() !== "") {
     tasks.push(task);
     console.log(`Task "${task}" added.`);
+  }
+}
+
+function remove(index) {
+  if (index >= 1 && index <= tasks.length) {
+    const removedTask = tasks.splice(index - 1, 1);
+    console.log(`Removed task: "${removedTask[0]}".`);
+  } else {
+    console.log("Invalid task index.");
   }
 }
 
