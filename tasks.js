@@ -15,6 +15,7 @@ function startApp(name) {
   console.log(`Welcome to ${name}'s application!`);
   console.log("--------------------");
 }
+const tasks = ["do homework", "take a medicine"];
 
 /**
  * Decides what to do depending on the data that was received
@@ -32,16 +33,26 @@ function startApp(name) {
  * @returns {void}
  */
 function onDataReceived(text) {
-  var textParts = text.split(" ");
-  if (text === "quit\n" || text === "exit\n") {
+  var textParts = text.trim().split(" ");
+  if (textParts[0] === "quit" || textParts[0] === "exit") {
     quit();
-  } else if (text.slice(0, 5) === "hello") {
+  } else if (textParts[0] === "hello") {
     hello(text);
-  } else if (text === "help\n") {
+  } else if (textParts[0] === "list") {
+    listTasks();
+  } else if (text) {
+  } else if (text) {
+  } else if (textParts[0] === "help") {
     help();
   } else {
     unknownCommand(text);
   }
+}
+
+function listTasks() {
+  tasks.forEach((task, index) => {
+    console.log(`${index + 1}. ${task}`);
+  });
 }
 
 /**
@@ -56,8 +67,8 @@ function unknownCommand(c) {
 }
 
 /**
- * Says hello
- *
+ * Says hello1
+0 *
  * @returns {void}
  */
 
