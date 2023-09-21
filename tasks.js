@@ -109,7 +109,12 @@ function hello(name) {
 // help funiction to know how  you can use this app
 function help() {
   console.log(
-    "type:'hello  x' to get hello x! \n---- 'quit'  or  'exit' to Qutting  "
+    "Available commands:\n" +
+      "- 'hello x': Print hello message for the provided name.\n" +
+      "- 'list': List all tasks.\n" +
+      "- 'add x': Add a task 'x'.\n" +
+      "- 'remove [index]': Remove a task at the specified index.\n" +
+      "- 'quit' or 'exit': Quit the application."
   );
 }
 
