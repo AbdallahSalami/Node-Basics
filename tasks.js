@@ -59,9 +59,13 @@ function unknownCommand(c) {
  *
  * @returns {void}
  */
+
+// welcome function
 function hello() {
   console.log("hello!");
 }
+
+// help funiction to know how  you can use this app
 function help() {
   console.log("type: 'hello' to get hello \n 'quit'  or  'exit' to Quting");
 }
