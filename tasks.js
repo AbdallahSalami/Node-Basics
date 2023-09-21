@@ -59,15 +59,6 @@ function list() {
   });
 }
 
-function remove(index) {
-  if (index >= 1 && index <= tasks.length) {
-    const removedTask = tasks.splice(index - 1, 1);
-    console.log(`Removed task: "${removedTask[0]}".`);
-  } else {
-    console.log("Invalid task index.");
-  }
-}
-
 /**
  * prints "unknown command"
  * This function is supposed to run when all other commands have failed
@@ -89,8 +80,13 @@ function add(task) {
 
 // remove function
 function remove(index) {
-  if (index >= 1 && index <= tasks.length) {
-    const removedTask = tasks.splice(index - 1, 1);
+  let taskIndex = parseInt(index) - 1;
+  if (!index) {
+    taskIndex = -1;
+  }
+
+  if (isFinite(taskIndex) && taskIndex >= -1 && taskIndex <= tasks.length) {
+    const removedTask = tasks.splice(taskIndex, 1);
     console.log(`Removed task: "${removedTask[0]}".`);
   } else {
     console.log("Invalid task index. Task does not exist.");
