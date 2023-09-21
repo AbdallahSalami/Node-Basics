@@ -61,7 +61,7 @@ function unknownCommand(c) {
  * @returns {void}
  */
 
-// welcome function
+// welcome function to type "hello X!"  X can anything
 function hello(name) {
   var name1 = name.trim();
 
@@ -70,7 +70,9 @@ function hello(name) {
 
 // help funiction to know how  you can use this app
 function help() {
-  console.log("type:'hello' to get hello \n---- 'quit'  or  'exit' to Qutting");
+  console.log(
+    "type:'hello  x' to get hello x! \n---- 'quit'  or  'exit' to Qutting  "
+  );
 }
 
 /**
